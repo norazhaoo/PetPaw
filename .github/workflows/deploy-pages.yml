@@ -1,9 +1,10 @@
-# Deploy only Vite's dist/ output. If another workflow uploads the repo root (path: '.'),
-# it will overwrite this site and the live page will still reference /src/main.jsx.
+# Deploy only Vite's dist/. Do not add a Jekyll/static workflow with path: '.' — it will
+# overwrite this site and the live page will show /src/main.jsx again.
 name: Deploy to GitHub Pages
 
 on:
   push:
+    # Add your default branch name here if it is not main or master.
     branches: [main, master]
   workflow_dispatch:
 
