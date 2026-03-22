@@ -60,7 +60,8 @@ export const translations = {
     about: 'About PetPaw',
     clear_data: 'Clear All Data',
     data_cleared: 'Data cleared!',
-    clear_confirm: 'This will permanently delete ALL pets and records. Are you sure?'
+    clear_confirm: 'This will permanently delete ALL pets and records. Are you sure?',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: 'cup', unit_bag: 'bag', unit_box: 'box', unit_can: 'can'
   },
   zh: {
     pawfile: '宠物档案',
@@ -123,7 +124,8 @@ export const translations = {
     about: '关于 PetPaw',
     clear_data: '清除所有数据',
     data_cleared: '数据已清空！',
-    clear_confirm: '此操作将永久删除所有宠物和记录。确定吗？'
+    clear_confirm: '此操作将永久删除所有宠物和记录。确定吗？',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: 'cup', unit_bag: '袋', unit_box: '盒', unit_can: '罐'
   },
   ja: {
     pawfile: 'ペット',
@@ -186,7 +188,8 @@ export const translations = {
     about: 'PetPaw について',
     clear_data: '全データ消去',
     data_cleared: 'データを消去しました！',
-    clear_confirm: 'すべての記録を完全に削除します。よろしいですか？'
+    clear_confirm: 'すべての記録を完全に削除します。よろしいですか？',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: 'カップ', unit_bag: '袋', unit_box: '箱', unit_can: '缶'
   },
   ko: {
     pawfile: '친구들',
@@ -249,7 +252,8 @@ export const translations = {
     about: 'PetPaw 정보',
     clear_data: '모든 데이터 지우기',
     data_cleared: '데이터가 삭제되었습니다!',
-    clear_confirm: '모든 기록이 영구적으로 삭제됩니다. 확실합니까?'
+    clear_confirm: '모든 기록이 영구적으로 삭제됩니다. 확실합니까?',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: '컵', unit_bag: '봉지', unit_box: '상자', unit_can: '캔'
   },
   es: {
     pawfile: 'Mascotas',
@@ -312,7 +316,8 @@ export const translations = {
     about: 'Acerca de PetPaw',
     clear_data: 'Borrar Datos',
     data_cleared: '¡Datos borrados!',
-    clear_confirm: 'Esto eliminará permanentemente todos los registros. ¿Estás seguro?'
+    clear_confirm: 'Esto eliminará permanentemente todos los registros. ¿Estás seguro?',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: 'taza', unit_bag: 'bolsa', unit_box: 'caja', unit_can: 'lata'
   },
   th: {
     pawfile: 'สัตว์เลี้ยง',
@@ -375,6 +380,7 @@ export const translations = {
     about: 'เกี่ยวกับ PetPaw',
     clear_data: 'ลบข้อมูลทั้งหมด',
     data_cleared: 'ลบข้อมูลแล้ว!',
-    clear_confirm: 'ขั้นตอนนี้จะลบบันทึกทั้งหมดอย่างถาวร คุณแน่ใจหรือไม่?'
+    clear_confirm: 'ขั้นตอนนี้จะลบบันทึกทั้งหมดอย่างถาวร คุณแน่ใจหรือไม่?',
+    unit_g: 'g', unit_kg: 'kg', unit_ml: 'ml', unit_L: 'L', unit_cup: 'ถ้วย', unit_bag: 'ถุง', unit_box: 'กล่อง', unit_can: 'กระป๋อง'
   }
 };

@@ -26,7 +26,19 @@ const ShovelIcon = ({ size, color }) => (
   </svg>
 );
 
-const CUSTOM_ICONS = [Star, Heart, Droplet, Sun];
+const ElectronicScaleIcon = ({ size, color }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <rect x="3" y="4" width="18" height="16" rx="3" ry="3" />
+    <rect x="8" y="7" width="8" height="4" rx="1" />
+  </svg>
+);
+
+const CUSTOM_ICONS = [
+  Star, Heart, Droplet, Sun,
+  LucideIcons.Zap, LucideIcons.Smile, LucideIcons.Music, LucideIcons.Coffee,
+  LucideIcons.Camera, LucideIcons.Gift, LucideIcons.Umbrella, LucideIcons.Book,
+  LucideIcons.Feather, LucideIcons.Flame, LucideIcons.Moon, LucideIcons.Cloud
+];
 
 const ICON_MAP = {
   vaccine: <Syringe size={36} color="#FF7B54" />,
@@ -146,7 +158,7 @@ const Dashboard = () => {
       if (isSameDay(parseISO(l.date), date)) icons.push(getSmallIcon(l.type, l.color, l.iconIdx)); 
     });
     petMeds.forEach(m => { if (isSameDay(parseISO(m.date), date)) icons.push(SMALL_ICON_MAP.medical); });
-    petWeights.forEach(w => { if (isSameDay(parseISO(w.date), date)) icons.push(<Scale size={14} color="#3498DB" />); });
+    petWeights.forEach(w => { if (isSameDay(parseISO(w.date), date)) icons.push(<ElectronicScaleIcon size={14} color="#3498DB" />); });
     return icons.slice(0, 4);
   };
 
@@ -189,6 +201,9 @@ const Dashboard = () => {
     <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
       
       {/* Top Status Indicators (Borderless 2D) */}
+      <div style={{ padding: '0 10px' }}>
+        <h3 style={{ fontSize: '14px', color: 'var(--text-muted)', margin: '0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Stock Alert</h3>
+      </div>
       <style>
         {`
            .hide-scroll::-webkit-scrollbar { display: none; }
@@ -283,6 +298,7 @@ const Dashboard = () => {
 
       {/* 2D Quick Actions */}
       <div style={{ padding: '0 10px' }}>
+        <h3 style={{ fontSize: '14px', color: 'var(--text-muted)', margin: '0 0 12px 0', textTransform: 'uppercase', letterSpacing: '0.5px' }}>Things to track</h3>
         <div style={{ display: 'flex', gap: '16px', flexWrap: 'nowrap', overflowX: 'auto', paddingBottom: '10px' }}>
           {quickActions.map(type => (
             <button
@@ -297,7 +313,7 @@ const Dashboard = () => {
             onClick={() => setShowWeightModal(true)}
             style={{ background: 'transparent', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', minWidth: '40px' }}
           >
-            <Scale size={36} color="#3498DB" />
+            <ElectronicScaleIcon size={36} color="#3498DB" />
           </button>
           
           {customActions.map(ca => {
@@ -394,7 +410,7 @@ const Dashboard = () => {
             )}
             {petWeights.filter(w => isSameMonth(parseISO(w.date), currentMonth)).length > 0 && (
               <div style={{ display: 'flex', alignItems: 'center', gap: '6px', background: '#F0EDE6', padding: '6px 10px', borderRadius: '16px', fontSize: '13px', fontWeight: 'bold' }}>
-                <Scale size={14} color="#3498DB" /> x{petWeights.filter(w => isSameMonth(parseISO(w.date), currentMonth)).length}
+                <ElectronicScaleIcon size={14} color="#3498DB" /> x{petWeights.filter(w => isSameMonth(parseISO(w.date), currentMonth)).length}
               </div>
             )}
           </div>
@@ -402,7 +418,10 @@ const Dashboard = () => {
        </div>
         
         <div className="card">
-          <h2 style={{ fontSize: '16px', marginBottom: '8px' }}>Weight History ⚖️</h2>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '8px' }}>
+            <h2 style={{ fontSize: '16px', margin: 0 }}>Weight History</h2>
+            <ElectronicScaleIcon size={20} color="var(--text-main)" />
+          </div>
           <div style={{ height: '220px', marginTop: '10px' }}>
             {chartData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
@@ -442,7 +461,7 @@ const Dashboard = () => {
                    return (
                      <div key={item.id} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '8px 12px', background: 'var(--bg-color)', borderRadius: '8px' }}>
                        <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                         <div><Scale size={36} color="#3498DB" /></div>
+                         <div><ElectronicScaleIcon size={36} color="#3498DB" /></div>
                          <div>
                            <div style={{ fontWeight: 'bold', fontSize: '13px' }}>Recorded Weight: {item.weight} kg</div>
                            <div className="text-muted" style={{ fontSize: '10px' }}>{format(parseISO(item.date), 'HH:mm')}</div>
