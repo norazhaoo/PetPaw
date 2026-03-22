@@ -1,8 +1,11 @@
+# Deploy only Vite's dist/ output. If another workflow uploads the repo root (path: '.'),
+# it will overwrite this site and the live page will still reference /src/main.jsx.
 name: Deploy to GitHub Pages
 
 on:
   push:
     branches: [main, master]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -11,11 +14,14 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -23,21 +29,18 @@ jobs:
           node-version: "20"
           cache: npm
       - run: npm ci
-      - name: Build
-        run: npm run build
-        env:
-          # Must match project URL path: https://<user>.github.io/<repo>/
-          BASE_PATH: /${{ github.event.repository.name }}/
-      - uses: actions/upload-pages-artifact@v3
+      - run: npm run build
+      - name: Ensure we deploy the Vite bundle (not dev index.html)
+        run: |
+          if grep -qE 'src/main\.(jsx|tsx|js|ts)' dist/index.html; then
+            echo 'dist/index.html still references /src/* — check vite build and workflow path.'
+            exit 1
+          fi
+          echo '--- dist/index.html (first 25 lines) ---'
+          sed -n '1,25p' dist/index.html
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
         with:
           path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
       - id: deployment
         uses: actions/deploy-pages@v4
